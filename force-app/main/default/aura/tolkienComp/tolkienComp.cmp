@@ -1,0 +1,30 @@
+<aura:component controller="searchCharacterController">
+    <aura:attribute name="searchFor" type="string"/>
+    <aura:attribute name="result" type="List"/>
+    
+    <div class="slds-m-around_medium">
+        <lightning:layout>
+            <lightning:layoutItem size="4" padding="around-small">
+                <lightning:input value="{!v.searchFor}" aura:id="searchField" label="Character Name"/>
+            </lightning:layoutItem>
+                    <lightning:layoutItem size="3" padding="around-small">
+                        <lightning:button onclick="{!c.Search}" Label="Search" iconName="utility:search"/>
+                    </lightning:layoutItem>
+        </lightning:layout>
+    </div>
+            <aura:iteration items="{!v.result}" var="chara" indexVar="count">
+                <tr>
+                    <th>Character Name</th>
+                    <td>{!chara.Name}</td>
+                    <td>{!chara.CharacterIdentifier__c}</td>
+                </tr>
+    </aura:iteration>
+                <tr>
+                    <aura:iteration items="{!v.result}" var="randQt" indexVar="count">
+                        <th>Quote</th>
+                        <td>{!randQt.QuoteLine__c}</td>
+                    </aura:iteration>
+    </tr>
+                    
+
+</aura:component>
