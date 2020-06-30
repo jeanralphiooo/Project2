@@ -1,0 +1,3 @@
+<apex:component >
+    <apex:image id="logo" value="{$Resource.commLogo}"/>
+</apex:component>

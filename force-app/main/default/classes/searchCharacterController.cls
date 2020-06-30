@@ -1,7 +1,7 @@
 public with sharing class searchCharacterController{
     
     @auraEnabled
-    public static list<sObject> getCharacter(String search){
+    public static sObject getCharacter(String search){
         //String search = 'Gimli';
         List<sObject> returnList = new List<sObject>();
         List<Character__c> listOfChar = [SELECT Name, CharacterIdentifier__c FROM Character__c WHERE Name = :search];
@@ -17,6 +17,7 @@ public with sharing class searchCharacterController{
         charact=listOfChar.get(0);
         
         string identifier = charact.CharacterIdentifier__c;
+        Favorite__c fav = new Favorite__c();
         
          Http http = new Http();
         HttpRequest request = new HttpRequest();
@@ -56,12 +57,29 @@ public with sharing class searchCharacterController{
             
             Quotes__c randQt = new Quotes__c();
             randQt = qteList[rand];
-            System.debug(randQt.QuoteLine__c);
-              returnList.add(randQt);
+            insert randQt;
+            String theQuote = randQt.QuoteLine__c;
+           
+            
+            fav.Name = theQuote;
+            fav.favquote__c = theQuote;
+            fav.FavoriteChar__c = search;
+            system.debug(fav);
+            
+            system.debug(fav.favquote__c);
+            
+            //System.debug(randQt.QuoteLine__c);
+              returnList.add(fav);
                 }
         
-        return returnList;
+        return fav;
             }
+
+    @auraEnabled
+    public static void saveQuote(Favorite__c favQuo){
         
-       // return returnList;
+        insert favQuo;
+
+        
+    }
     }

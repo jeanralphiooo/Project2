@@ -1,0 +1,11 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes">
+    
+    <div style="background-color:black">
+    <div class="slds-align_absolute-center">
+    
+    <img src="{!$Resource.logo}"/>
+    </div>
+    </div>                           
+    
+	
+</aura:component>

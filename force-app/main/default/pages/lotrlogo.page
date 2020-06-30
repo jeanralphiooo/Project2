@@ -1,0 +1,9 @@
+<apex:page >
+
+    <div> style="width:800px; margin:0 auto;">
+   
+    
+    <apex:image value="{!$Resource.logo}"/>
+    </div> 
+    
+</apex:page>
